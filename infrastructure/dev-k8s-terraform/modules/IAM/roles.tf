@@ -1,11 +1,11 @@
 resource "aws_iam_policy" "policy_for_master_role" {
   name        = "policy_for_master_role"
-  policy      = file("./modules/IAM/policy_for_master.json")
+  policy      = file("./modules/IAM/policy_for_master1.json")
 }
 
 resource "aws_iam_policy" "policy_for_worker_role" {
   name        = "policy_for_worker_role"
-  policy      = file("./modules/IAM/policy_for_worker.json")
+  policy      = file("./modules/IAM/policy_for_worker1.json")
 }
 
 resource "aws_iam_role" "role_for_master" {
@@ -59,22 +59,22 @@ resource "aws_iam_role" "role_for_worker" {
 resource "aws_iam_policy_attachment" "attach_for_master" {
   name       = "attachment_for_master"
   roles      = [aws_iam_role.role_for_master.name]
-  policy_arn = aws_iam_policy.policy_for_master_role.arn
+  policy_arn = aws_iam_policy.policy_for_master1_role.arn
 }
 
 resource "aws_iam_policy_attachment" "attach_for_worker" {
   name       = "attachment_for_worker"
   roles      = [aws_iam_role.role_for_worker.name]
-  policy_arn = aws_iam_policy.policy_for_worker_role.arn
+  policy_arn = aws_iam_policy.policy_for_worker1_role.arn
 }
 
-resource "aws_iam_instance_profile" "profile_for_master" {
-  name  = "profile_for_master"
+resource "aws_iam_instance_profile" "profile_for_master1" {
+  name  = "profile_for_master1"
   role = aws_iam_role.role_for_master.name
 }
 
-resource "aws_iam_instance_profile" "profile_for_worker" {
-  name  = "profile_for_worker"
+resource "aws_iam_instance_profile" "profile_for_worker1" {
+  name  = "profile_for_worker1"
   role = aws_iam_role.role_for_worker.name
 }
 
