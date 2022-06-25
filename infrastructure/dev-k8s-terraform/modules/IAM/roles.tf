@@ -79,9 +79,9 @@ resource "aws_iam_instance_profile" "profile_for_worker1" {
 }
 
 output master_profile_name {
-  value       = aws_iam_instance_profile.profile_for_master.name
+  value       = aws_iam_instance_profile.profile_for_master1.name
 }
 
 output worker_profile_name {
-  value       = aws_iam_instance_profile.profile_for_worker.name
+  value       = aws_iam_instance_profile.profile_for_worker1.name
 }
