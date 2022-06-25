@@ -1,7 +1,5 @@
 provider "aws" {
   region     = "us-east-1"
-  access_key = "AKIAQBWJCKUS457XN6VU"
-  secret_key = "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"
 }
 
 module "iam" {
