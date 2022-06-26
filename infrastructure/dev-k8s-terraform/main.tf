@@ -203,3 +203,40 @@ output worker-2-ip {
   sensitive   = false
   description = "public ip of the worker-2"
 }
+}
+
+resource "aws_instance" "worker-2" {
+    ami = "ami-013f17f36f8b1fefb"
+    instance_type = "t3a.medium"
+    iam_instance_profile = module.iam.worker_profile_name
+    vpc_security_group_ids = [aws_security_group.matt-kube-worker-sg.id, aws_security_group.matt-kube-mutual-sg.id]
+    key_name = "mattkey"
+    subnet_id = "subnet-0e373ba4614ced1f7"  # select own subnet_id of us-east-1a
+    availability_zone = "us-east-1a"
+    tags = {
+        Name = "worker-2"
+        "kubernetes.io/cluster/mattsCluster" = "owned"
+        Project = "tera-kube-ans"
+        Role = "worker"
+        Id = "2"
+        environment = "dev"
+    }
+}
+
+output kube-master-ip {
+  value       = aws_instance.kube-master.public_ip
+  sensitive   = false
+  description = "public ip of the kube-master"
+}
+
+output worker-1-ip {
+  value       = aws_instance.worker-1.public_ip
+  sensitive   = false
+  description = "public ip of the worker-1"
+}
+
+output worker-2-ip {
+  value       = aws_instance.worker-2.public_ip
+  sensitive   = false
+  description = "public ip of the worker-2"
+}
