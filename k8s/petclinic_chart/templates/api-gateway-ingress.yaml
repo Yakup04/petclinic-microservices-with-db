@@ -24,9 +24,8 @@ spec:
                   number: 8080
             path: /
             pathType: Prefix
-  
   rules:
     - host: '{{ .Values.DNS_NAME }}'
-      ...
+      
 status:
   loadBalancer: {}
